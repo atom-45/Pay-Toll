@@ -1,6 +1,5 @@
 package com.automatedcartollingsystem.models;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class User {
         this.cars = cars;
     }
 
-    public void setAccount_id(@NotNull Account acc){this.account_id = acc.getAccountNumber();}
+    public void setAccount_id(Account acc){this.account_id = acc.getAccountNumber();}
 
     public void setCars(List<Car> cars){ this.cars=cars;}
 
