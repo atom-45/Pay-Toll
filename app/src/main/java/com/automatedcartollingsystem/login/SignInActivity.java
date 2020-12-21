@@ -62,10 +62,9 @@ public class SignInActivity extends AppCompatActivity {
         });
 
         forgetPassword.setOnClickListener(v -> {
-            if(v.callOnClick()){
-                Toast.makeText(SignInActivity.this,
+            Toast.makeText(SignInActivity.this,
                         "Email sent to your email address",Toast.LENGTH_SHORT).show();
-            }
+
         });
 
     }

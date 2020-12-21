@@ -161,6 +161,7 @@
         android:elevation="12dp"
         android:stateListAnimator="@null"
         android:text="@string/register"
+        android:background="@color/pinkRed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

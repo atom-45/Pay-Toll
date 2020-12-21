@@ -38,9 +38,12 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        getActionBar().setDisplayShowTitleEnabled(false);
-        getActionBar().setLogo(R.drawable.app_logo);
-        getActionBar().setDisplayUseLogoEnabled(true);
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setLogo(R.drawable.app_logo);
+        //getActionBar().setDisplayShowTitleEnabled(false);
+        //getActionBar().setLogo(R.drawable.app_logo);
+        //getActionBar().setDisplayUseLogoEnabled(true);
 
         EditText nameEditText= findViewById(R.id.username);
         EditText mobile_numberEditText = findViewById(R.id.user_mobile_number);
