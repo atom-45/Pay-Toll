@@ -44,7 +44,7 @@ public class SignInActivity extends AppCompatActivity {
         ProgressBar progressBar = findViewById(R.id.progressBar);
         userVerification();
         // I am suspecting that the  forgetPassword  might not work. Actually this might not work.
-        if(uVerification.equals("True")){
+       /* if(uVerification.equals("True")){
             progressBar.setIndeterminate(true);
             progressBar.setVisibility(View.VISIBLE);
             Toast.makeText(this,
@@ -54,7 +54,7 @@ public class SignInActivity extends AppCompatActivity {
             Toast.makeText(this,
                     "Not registered or wrong password!",Toast.LENGTH_LONG).show();
 
-        }
+        }*/
         //Launches the Registration activity class
         findViewById(R.id.register_button).setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(),RegistrationActivity.class));
