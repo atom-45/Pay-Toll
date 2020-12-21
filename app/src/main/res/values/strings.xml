@@ -24,4 +24,8 @@
     <string name="total_amount">Total Amount</string>
     <string name="n1">N1</string>
     <string name="save">Save</string>
+    <string name="transaction_history">Transaction History</string>
+    <string name="traffic_update">Traffic Update</string>
+    <string name="profile">Profile</string>
+    <string name="navigation">Navigation</string>
 </resources>
