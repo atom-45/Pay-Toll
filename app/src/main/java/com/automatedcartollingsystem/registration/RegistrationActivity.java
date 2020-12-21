@@ -40,7 +40,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setLogo(R.drawable.app_logo);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         //getActionBar().setDisplayShowTitleEnabled(false);
         //getActionBar().setLogo(R.drawable.app_logo);
         //getActionBar().setDisplayUseLogoEnabled(true);
@@ -102,7 +102,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         { //Convert account ID into integer in the php file. why doesnt java have independant generic hashmaps?
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String,String> mPar = new HashMap<>();
                 //This puts values into the user database table.
                 mPar.put("name",user.getName());
