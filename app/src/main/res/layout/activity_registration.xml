@@ -31,7 +31,7 @@
                 android:text="@string/user_name"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.186"
+                app:layout_constraintHorizontal_bias="0.123"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -84,7 +84,7 @@
                 android:text="@string/user_email"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.144"
+                app:layout_constraintHorizontal_bias="0.122"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/user_mobile_number" />
 
@@ -109,7 +109,7 @@
                 android:text="@string/prompt_password"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.157"
+                app:layout_constraintHorizontal_bias="0.133"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/user_email_address" />
 
@@ -130,11 +130,11 @@
                 android:id="@+id/confirm_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="12dp"
                 android:text="@string/re_enter_password"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.193"
+                app:layout_constraintHorizontal_bias="0.168"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password" />
 

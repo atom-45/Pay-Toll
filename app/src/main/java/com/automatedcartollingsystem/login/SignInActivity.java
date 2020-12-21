@@ -2,6 +2,7 @@ package com.automatedcartollingsystem.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.automatedcartollingsystem.login.data.UserCredentials;
 import com.automatedcartollingsystem.models.Constants;
+import com.automatedcartollingsystem.registration.RegistrationActivity;
 import com.example.automatedcartollingsystem.R;
 
 import org.json.JSONArray;
@@ -43,7 +45,7 @@ public class SignInActivity extends AppCompatActivity {
         TextView forgetPassword = findViewById(R.id.forgot_password_textview);
         ProgressBar progressBar = findViewById(R.id.progressBar);
         userVerification();
-        // I am suspecting that the  forgetPassword  might not work.
+        // I am suspecting that the  forgetPassword  might not work. Actually this might not work.
         if(uVerification.equals("True")){
             progressBar.setIndeterminate(true);
             progressBar.setVisibility(View.VISIBLE);
@@ -55,14 +57,16 @@ public class SignInActivity extends AppCompatActivity {
                     "Not registered or wrong password!",Toast.LENGTH_LONG).show();
 
         }
+        //Launches the Registration activity class
+        findViewById(R.id.register_button).setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(),RegistrationActivity.class));
 
-        forgetPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(v.callOnClick()){
-                    Toast.makeText(SignInActivity.this,
-                            "Email sent to your email address",Toast.LENGTH_SHORT).show();
-                }
+        });
+
+        forgetPassword.setOnClickListener(v -> {
+            if(v.callOnClick()){
+                Toast.makeText(SignInActivity.this,
+                        "Email sent to your email address",Toast.LENGTH_SHORT).show();
             }
         });
 

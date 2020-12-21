@@ -10,7 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/sign_in_background">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -79,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:ems="10"
-                    android:hint="@string/mobile_no"
+                    android:hint="@string/mobile_number"
                     android:inputType="phone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.504"

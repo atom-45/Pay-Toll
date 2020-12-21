@@ -1,3 +1,27 @@
 <resources>
-    <string name="app_name">Automated Car Tolling System</string>
+    <string name="app_name">PayT</string>
+    <string name="sign_in">Sign In</string>
+    <string name="register_account">New user? Register</string>
+    <string name="register">Register</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_email">Email</string>
+    <string name="forgot_password">Forget Password?</string>
+    <string name="user_name">Name</string>
+    <string name="mobile_number">Mobile number</string>
+    <string name="user_email">Email</string>
+    <string name="re_enter_password">Re-enter password</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="set">Set</string>
+    <string name="account">Account</string>
+    <string name="cars">Cars</string>
+    <string name="user_surname">Surname</string>
+    <string name="edit">Edit</string>
+    <string name="start_trip">Start Trip</string>
+    <string name="end_trip">End Trip</string>
+    <string name="route">Route</string>
+    <string name="no_of_tolls">No. of Tolls</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="n1">N1</string>
+    <string name="save">Save</string>
 </resources>

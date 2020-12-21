@@ -1,15 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.automatedcartollingsystem">
+
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/app_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/app_logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AutomatedCarTollingSystem">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.AutomatedCarTollingSystem"
+        android:fullBackupContent="true">
+
+
+        <activity
+            android:name="com.automatedcartollingsystem.login.SignInActivity"
+            android:theme="@style/PageTheme.NoActionBar"/>
+        <activity android:name="com.automatedcartollingsystem.appfunctionality.NavigationActivity"/>
+        <activity android:name="com.automatedcartollingsystem.appfunctionality.ScannerActivity"/>
+        <activity android:name="com.automatedcartollingsystem.appfunctionality.TrafficUpdateActivity"/>
+        <activity android:name="com.automatedcartollingsystem.appfunctionality.TransactionHistoryActivity"/>
+        <activity android:name="com.automatedcartollingsystem.registration.EditRegistrationActivity"/>
+        <activity android:name="com.automatedcartollingsystem.registration.ProfileActivity"/>
+        <activity android:name="com.automatedcartollingsystem.registration.RegistrationActivity"/>
+        <activity
+            android:name="com.automatedcartollingsystem.login.SplashActivity"
+            android:theme="@style/Theme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
