@@ -57,6 +57,7 @@ public class SignInActivity extends AppCompatActivity {
         }*/
 
         //This should include the network or internet verification
+        progressBar.setVisibility(View.INVISIBLE);
         findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
