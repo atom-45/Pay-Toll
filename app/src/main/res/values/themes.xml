@@ -20,7 +20,7 @@
 
     <!-- This is theme for buttons -->
     <!-- Using alike or same themes causes change in color of the button -->
-    <style name="AppTheme.Button" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="AppTheme.Button" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/pinkRed</item>
         <item name="colorButtonNormal">@color/pinkRed</item>
         <item name="android:colorButtonNormal">@color/pinkRed</item>
