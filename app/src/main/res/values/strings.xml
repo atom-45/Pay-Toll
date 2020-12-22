@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PayT</string>
     <string name="sign_in">Sign In</string>
-    <string name="register_account">New user? Register</string>
+    <string name="register_account">Are you new? Please register below</string>
     <string name="register">Register</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_email">Email</string>
