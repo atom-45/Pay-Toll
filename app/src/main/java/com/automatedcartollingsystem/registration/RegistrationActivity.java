@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -39,8 +40,8 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getActionBar().setDisplayShowTitleEnabled(false);
         //getActionBar().setLogo(R.drawable.app_logo);
         //getActionBar().setDisplayUseLogoEnabled(true);
@@ -62,24 +63,31 @@ public class RegistrationActivity extends AppCompatActivity {
                 0L, password,null);
 
 
-        //Feels like there might be an error on the second else if because I have to call the method 1st.
-        if(!password.equals(rePassword)){
-            Toast.makeText(this,"Passwords do not match!",Toast.LENGTH_LONG).show();
-        }
-        else {
-            //Usually we should launch an activity.
-            postCredentials();
-            if(userVerification.equals("True")){
-                Toast.makeText(this,"You are already a registered user\nPlease sign in",
-                        Toast.LENGTH_LONG).show();
+
+        findViewById(R.id.register_button_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Feels like there might be an error on the second else if because I have to call the method 1st.
+                if(!password.equals(rePassword)){
+                    Toast.makeText(RegistrationActivity.this,"Passwords do not match!",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    //Usually we should launch an activity.
+                    postCredentials();
+                    if(userVerification.equals("True")){
+                        Toast.makeText(RegistrationActivity.this,"You are already a registered user\nPlease sign in",
+                                Toast.LENGTH_LONG).show();
+                    }
+                    Toast.makeText(RegistrationActivity.this,"You are successfully registered",Toast.LENGTH_LONG).show();
+                    nameEditText.clearComposingText();
+                    mobile_numberEditText.clearComposingText();
+                    emailAddressEditText.clearComposingText();
+                }
+                passwordEditText.clearComposingText();
+                rePasswordEditText.clearComposingText();
+
             }
-            Toast.makeText(this,"You are successfully registered",Toast.LENGTH_LONG).show();
-            nameEditText.clearComposingText();
-            mobile_numberEditText.clearComposingText();
-            emailAddressEditText.clearComposingText();
-        }
-        passwordEditText.clearComposingText();
-        rePasswordEditText.clearComposingText();
+        });
     }
 
     private void postCredentials(){

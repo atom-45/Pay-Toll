@@ -55,10 +55,28 @@ public class SignInActivity extends AppCompatActivity {
                     "Not registered or wrong password!",Toast.LENGTH_LONG).show();
 
         }*/
-        //Launches the Registration activity class
+
+        //This should include the network or internet verification
+        findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressBar.setIndeterminate(true);
+                progressBar.setVisibility(View.VISIBLE);
+                if(uVerification.equals("True")){
+                    Toast.makeText(SignInActivity.this,
+                            "Successfully logged in",Toast.LENGTH_LONG).show();
+
+                } else {
+                    Toast.makeText(SignInActivity.this,
+                            "Not registered or wrong password!",Toast.LENGTH_LONG).show();
+                }
+                finish();
+            }
+        });
+
         findViewById(R.id.register_button).setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(),RegistrationActivity.class));
-
+            finish();
         });
 
         forgetPassword.setOnClickListener(v -> {
@@ -66,6 +84,7 @@ public class SignInActivity extends AppCompatActivity {
                         "Email sent to your email address",Toast.LENGTH_SHORT).show();
 
         });
+
 
     }
 
