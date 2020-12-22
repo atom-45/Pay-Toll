@@ -6,6 +6,7 @@
         <item name="colorPrimaryVariant">@color/orange</item>
         <item name="colorOnPrimary">@color/white</item>
 
+
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/purple_500</item>
         <item name="colorSecondaryVariant">@color/paleOrange</item>
@@ -14,6 +15,16 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here.  @color/purple_500 @color/purple_700 @color/teal_200 @color/teal_700-->
+
+    </style>
+
+    <!-- This is theme for buttons -->
+    <!-- Using alike or same themes causes change in color of the button -->
+    <style name="AppTheme.Button" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/pinkRed</item>
+        <item name="colorButtonNormal">@color/pinkRed</item>
+        <item name="android:colorButtonNormal">@color/pinkRed</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="Theme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
@@ -27,5 +38,6 @@
     <style name="PageTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 </resources>

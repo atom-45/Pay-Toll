@@ -153,6 +153,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
+    <!-- I can only change the background button if the button doesn't use main app theme other wise it won't be possible-->
     <Button
         android:id="@+id/button"
         android:layout_width="195dp"
@@ -161,7 +162,7 @@
         android:elevation="12dp"
         android:stateListAnimator="@null"
         android:text="@string/register"
-        android:background="@color/pinkRed"
+        android:theme="@style/AppTheme.Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

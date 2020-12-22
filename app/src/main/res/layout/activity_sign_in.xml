@@ -100,7 +100,7 @@
         app:layout_constraintStart_toStartOf="@+id/register_button"
         app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/register_button"
         android:layout_width="182dp"
         android:layout_height="39dp"
