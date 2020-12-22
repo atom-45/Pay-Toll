@@ -34,13 +34,13 @@
         <activity
             android:name="com.automatedcartollingsystem.login.SignInActivity"
             android:theme="@style/PageTheme.NoActionBar" />
-        <activity android:name="com.automatedcartollingsystem.appfunctionality.NavigationActivity" />
-        <activity android:name="com.automatedcartollingsystem.appfunctionality.ScannerActivity" />
-        <activity android:name="com.automatedcartollingsystem.appfunctionality.TrafficUpdateActivity" />
-        <activity android:name="com.automatedcartollingsystem.appfunctionality.TransactionHistoryActivity" />
-        <activity android:name="com.automatedcartollingsystem.registration.EditRegistrationActivity" />
-        <activity android:name="com.automatedcartollingsystem.registration.ProfileActivity" />
-        <activity android:name="com.automatedcartollingsystem.registration.RegistrationActivity" />
+        <activity android:name="com.automatedcartollingsystem.appfunctionality.NavigationActivity"/>
+        <activity android:name="com.automatedcartollingsystem.appfunctionality.ScannerActivity"/>
+        <activity android:name="com.automatedcartollingsystem.appfunctionality.TrafficUpdateActivity"/>
+        <activity android:name="com.automatedcartollingsystem.appfunctionality.TransactionHistoryActivity"/>
+        <activity android:name="com.automatedcartollingsystem.registration.EditRegistrationActivity"/>
+        <activity android:name="com.automatedcartollingsystem.registration.ProfileActivity"/>
+        <activity android:name="com.automatedcartollingsystem.registration.RegistrationActivity"/>
         <activity
             android:name="com.automatedcartollingsystem.login.SplashActivity"
             android:theme="@style/Theme.Splash">
