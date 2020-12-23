@@ -40,11 +40,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
 
-        //getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getActionBar().setDisplayShowTitleEnabled(false);
-        //getActionBar().setLogo(R.drawable.app_logo);
-        //getActionBar().setDisplayUseLogoEnabled(true);
 
         EditText nameEditText= findViewById(R.id.username);
         EditText mobile_numberEditText = findViewById(R.id.user_mobile_number);
@@ -52,39 +48,37 @@ public class RegistrationActivity extends AppCompatActivity {
         EditText passwordEditText =   findViewById(R.id.password);
         EditText rePasswordEditText = findViewById(R.id.reenter_password);
 
-        String name = nameEditText.toString();
-        mobile_number = mobile_numberEditText.toString().trim();
-        emailAddress = emailAddressEditText.toString().trim();
-        String password =  passwordEditText.toString().trim();
-        String rePassword = rePasswordEditText.toString().trim();
-
-        user = new User(name, emailAddress,
-                mobile_number,null,
-                0L, password,null);
-
-
-
         findViewById(R.id.register_button_2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String password =  passwordEditText.getText().toString().trim();
+                String rePassword = rePasswordEditText.getText().toString().trim();
+                String name = nameEditText.getText().toString();
+                mobile_number = mobile_numberEditText.getText().toString().trim();
+                emailAddress = emailAddressEditText.getText().toString().trim();
                 //Feels like there might be an error on the second else if because I have to call the method 1st.
+
+                user = new User(name, emailAddress,
+                        mobile_number,null,
+                        0L, password,null);
+
                 if(!password.equals(rePassword)){
-                    Toast.makeText(RegistrationActivity.this,"Passwords do not match!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity.this,"Passwords do not match!",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    //Usually we should launch an activity.
+                    //Usually we should launch an activity. Should remove the getText().clear and replace it with finish;
                     postCredentials();
-                    if(userVerification.equals("True")){
+                    if("True".equals(userVerification)){// Yoda condition
                         Toast.makeText(RegistrationActivity.this,"You are already a registered user\nPlease sign in",
                                 Toast.LENGTH_LONG).show();
                     }
                     Toast.makeText(RegistrationActivity.this,"You are successfully registered",Toast.LENGTH_LONG).show();
-                    nameEditText.clearComposingText();
-                    mobile_numberEditText.clearComposingText();
-                    emailAddressEditText.clearComposingText();
+                    nameEditText.getText().clear();
+                    mobile_numberEditText.getText().clear();
+                    emailAddressEditText.getText().clear();
                 }
-                passwordEditText.clearComposingText();
-                rePasswordEditText.clearComposingText();
+                passwordEditText.getText().clear();
+                rePasswordEditText.getText().clear();
 
             }
         });
@@ -110,7 +104,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         { //Convert account ID into integer in the php file. why doesnt java have independant generic hashmaps?
             @Override
-            protected Map<String, String> getParams() {
+            protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> mPar = new HashMap<>();
                 //This puts values into the user database table.
                 mPar.put("name",user.getName());
