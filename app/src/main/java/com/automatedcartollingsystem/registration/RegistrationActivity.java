@@ -25,6 +25,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class RegistrationActivity extends AppCompatActivity {
 
     private User user;
@@ -63,7 +64,13 @@ public class RegistrationActivity extends AppCompatActivity {
                         0L, password,null);
 
                 if(!password.equals(rePassword)){
-                    Toast.makeText(RegistrationActivity.this,"Passwords do not match!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrationActivity.this,
+                            "Passwords do not match!",Toast.LENGTH_SHORT).show();
+
+                } else if(name.equals("")||mobile_number.equals("")
+                        ||emailAddress.equals("")||emailAddress.matches(Constants.EMAIL_PATTERN)){
+                    Toast.makeText(RegistrationActivity.this,
+                            "Complete all Fields",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     //Usually we should launch an activity. Should remove the getText().clear and replace it with finish;

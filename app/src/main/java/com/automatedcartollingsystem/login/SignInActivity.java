@@ -1,6 +1,8 @@
 package com.automatedcartollingsystem.login;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -31,8 +35,6 @@ import java.util.Map;
 public class SignInActivity extends AppCompatActivity {
 
     private UserCredentials userCredentials;
-    private String emailAddress;
-    private String password;
     private String uVerification;
 
     @Override
@@ -42,36 +44,36 @@ public class SignInActivity extends AppCompatActivity {
 
         TextView forgetPassword = findViewById(R.id.forgot_password_textview);
         ProgressBar progressBar = findViewById(R.id.progressBar);
-        userVerification();
-        // I am suspecting that the  forgetPassword  might not work. Actually this might not work.
-       /* if(uVerification.equals("True")){
-            progressBar.setIndeterminate(true);
-            progressBar.setVisibility(View.VISIBLE);
-            Toast.makeText(this,
-                    "Successfully logged in",Toast.LENGTH_LONG).show();
+        EditText emailTextField = findViewById(R.id.editTextEmailAddress);
+        EditText passwordTextField = findViewById(R.id.editTextPassword);
 
-        } else {
-            Toast.makeText(this,
-                    "Not registered or wrong password!",Toast.LENGTH_LONG).show();
+        if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
+             && ContextCompat.checkSelfPermission(this,Manifest.permission.INTERNET) !=
+                PackageManager.PERMISSION_GRANTED) {
 
-        }*/
+             ActivityCompat.requestPermissions(this, new String[]
+                     {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET},
+                     6854);
 
+        }
         //This should include the network or internet verification
         progressBar.setVisibility(View.INVISIBLE);
-        findViewById(R.id.sign_in_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                progressBar.setIndeterminate(true);
-                progressBar.setVisibility(View.VISIBLE);
-                if(uVerification.equals("True")){
-                    Toast.makeText(SignInActivity.this,
-                            "Successfully logged in",Toast.LENGTH_LONG).show();
+        findViewById(R.id.sign_in_button).setOnClickListener(v -> {
+            progressBar.setIndeterminate(true);
+            progressBar.setVisibility(View.VISIBLE);
 
-                } else {
-                    Toast.makeText(SignInActivity.this,
-                            "Not registered or wrong password!",Toast.LENGTH_LONG).show();
-                }
-                finish();
+            String email = emailTextField.getText().toString().trim();
+            String password = passwordTextField.getText().toString().trim();
+            userVerification(email, password);
+
+            if("True".equals(uVerification)){//This is a Yoda condition
+                Toast.makeText(SignInActivity.this,
+                        "Successfully logged in",Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(SignInActivity.this,
+                        "Not registered or wrong password and/or email!",Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -80,51 +82,50 @@ public class SignInActivity extends AppCompatActivity {
             finish();
         });
 
-        forgetPassword.setOnClickListener(v -> {
-            Toast.makeText(SignInActivity.this,
-                        "Email sent to your email address",Toast.LENGTH_SHORT).show();
-
-        });
-
-
+        forgetPassword.setOnClickListener(v -> Toast.makeText(SignInActivity.this,
+                    "Email sent to your email address",Toast.LENGTH_SHORT).show());
     }
 
-
     //I find the user credentials redundant. but on the other hand it
-    // means that the data is kept by another class.
-    private void userVerification(){
-        EditText email = findViewById(R.id.editTextEmailAddress);
-        EditText password = findViewById(R.id.editTextPassword);
+    // means that the data is kept by another class/object.
+    private void userVerification(String email, String password){
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        userCredentials = new UserCredentials(email.getText().toString().trim(),
-                password.getText().toString().trim());
+        if(!email.equals("") && !password.equals("") && email.matches(Constants.EMAIL_PATTERN)){
+            userCredentials = new UserCredentials(email,password);
+            Log.e("Email",email);
+            Log.e("Password",password);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                Constants.URL_USER_STRING, (Response.Listener<String>) response -> {
-            Log.e("JSON RESPONSE", response);
-            try {
-                JSONObject jsonObject = new JSONObject(response);
-                uVerification = jsonObject.getString("boolSignIn");
+            StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                    Constants.URL_USER_STRING, response -> {
+                Log.e("JSON RESPONSE", response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    uVerification = jsonObject.getString("boolSignIn");
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }, error -> {
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }, error -> {
+                Toast.makeText(this,
+                        "Cannot sign into your account!",Toast.LENGTH_LONG).show();
+                Log.e("JSON ERROR",error.getMessage());
+
+            }){
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError{
+                    Map<String, String> mPar = new HashMap<>();
+                    mPar.put("Email",userCredentials.getEmail());
+                    mPar.put("Password",userCredentials.getPassword());
+                    return mPar;
+                }
+            };
+            requestQueue.add(stringRequest);
+
+        } else {
             Toast.makeText(this,
-                    "Cannot sign into your account!",Toast.LENGTH_LONG).show();
-            Log.e("JSON ERROR",error.getMessage());
-
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError{
-                Map<String, String> mPar = new HashMap<>();
-                mPar.put("Email",userCredentials.getEmail());
-                mPar.put("Password",userCredentials.getPassword());
-                return mPar;
-            }
-        };
-        requestQueue.add(stringRequest);
+                    "Password is wrong or email address is invalid",Toast.LENGTH_SHORT).show();
+        }
     }
 }
