@@ -68,8 +68,10 @@ public class SignInActivity extends AppCompatActivity {
             userVerification(email, password);
 
             if("True".equals(uVerification)){//This is a Yoda condition
+                progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(SignInActivity.this,
                         "Successfully logged in",Toast.LENGTH_LONG).show();
+                finish();
             } else {
                 Toast.makeText(SignInActivity.this,
                         "Not registered or wrong password and/or email!",Toast.LENGTH_LONG).show();
@@ -77,10 +79,8 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.register_button).setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(),RegistrationActivity.class));
-            finish();
-        });
+        findViewById(R.id.register_button).setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(),RegistrationActivity.class)));
 
         forgetPassword.setOnClickListener(v -> Toast.makeText(SignInActivity.this,
                     "Email sent to your email address",Toast.LENGTH_SHORT).show());
@@ -99,10 +99,11 @@ public class SignInActivity extends AppCompatActivity {
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST,
                     Constants.URL_USER_STRING, response -> {
-                Log.e("JSON RESPONSE", response);
+
                 try {
+                    Log.e("JSON RESPONSE", response);
                     JSONObject jsonObject = new JSONObject(response);
-                    uVerification = jsonObject.getString("boolSignIn");
+                    uVerification = jsonObject.getString("result");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -114,10 +115,11 @@ public class SignInActivity extends AppCompatActivity {
 
             }){
                 @Override
-                protected Map<String, String> getParams() throws AuthFailureError{
+                protected Map<String, String> getParams() {
                     Map<String, String> mPar = new HashMap<>();
                     mPar.put("Email",userCredentials.getEmail());
                     mPar.put("Password",userCredentials.getPassword());
+                    mPar.put("type","login");
                     return mPar;
                 }
             };
