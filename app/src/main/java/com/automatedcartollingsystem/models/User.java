@@ -13,13 +13,13 @@ public class User {
     private final String email;
     private final String mobile_number;
     private String license_exp;
-    private Long account_id;
+    private int account_id;
     private final String password;
     private List<Car> cars;
 
     //Remember on the activity registration xml to edit Surname into Mobile number
     public User(String name, String email, String mobile_number,
-                String license_exp, Long account_id, String password, List<Car> cars) {
+                String license_exp, int account_id, String password, List<Car> cars) {
         this.name = name;
         this.email = email;
         this.mobile_number = mobile_number;
@@ -29,7 +29,7 @@ public class User {
         this.cars = cars;
     }
 
-    public void setAccount_id(Account acc){this.account_id = acc.getAccountNumber();}
+    public void setAccount_id(int acc){this.account_id = acc;}
 
     public void setCars(List<Car> cars){ this.cars=cars;}
 
@@ -51,7 +51,7 @@ public class User {
         return license_exp;
     }
 
-    public Long getAccount_id() {
+    public Integer getAccount_id() {
         return account_id;
     }
 
