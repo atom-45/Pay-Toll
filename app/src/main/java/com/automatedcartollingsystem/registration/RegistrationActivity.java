@@ -1,7 +1,11 @@
 package com.automatedcartollingsystem.registration;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -60,7 +64,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
             user = new User(name, emailAddress,
                     mobile_number,"none",
-                    0L, password,null);
+                    0, password,null);
 
             if(!password.equals(rePassword)){
                 Toast.makeText(RegistrationActivity.this,
@@ -74,11 +78,11 @@ public class RegistrationActivity extends AppCompatActivity {
             else {
                 //Usually we should launch an activity. Should remove the getText().clear and replace it with finish;
                 postCredentials();
-                if(result.equals("True")){ // Hope this won't produce null error at runtime.
+                /*if("True".equals(result)){ // Hope this won't produce null error at runtime.
                     Toast.makeText(RegistrationActivity.this,"You are already a registered user\nPlease sign in",
                             Toast.LENGTH_LONG).show();
-                }
-                Toast.makeText(RegistrationActivity.this,"You are successfully registered",Toast.LENGTH_LONG).show();
+                }*/
+                //Toast.makeText(RegistrationActivity.this,"You are successfully registered",Toast.LENGTH_LONG).show();
                 //nameEditText.getText().clear();
                 //mobile_numberEditText.getText().clear();
                 //emailAddressEditText.getText().clear();
@@ -97,9 +101,10 @@ public class RegistrationActivity extends AppCompatActivity {
                         Log.e("JSON RESPONSE", response);
                         JSONObject jsonObject = new JSONObject(response);
                         result = jsonObject.getString("result");
-
-                        //This should return a boolean value from the php script.
-                        //I leave this one open because I am not getting any responses from the database.
+                        if(result.equals("True")){ // Hope this won't produce null error at runtime.
+                            Toast.makeText(RegistrationActivity.this,
+                                    "You are successfully registered",Toast.LENGTH_LONG).show();
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
