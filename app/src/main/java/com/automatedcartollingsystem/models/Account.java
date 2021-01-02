@@ -1,5 +1,7 @@
 package com.automatedcartollingsystem.models;
 
+import androidx.annotation.NonNull;
+
 import java.util.Objects;
 
 /**
@@ -14,8 +16,9 @@ public class Account {
     private final String accountHolder;
     private final String accountType;
     private final String email;
+    private int account_id;
 
-    public Account(double balance, Long accountNumber, String bankName,
+    public Account(int account_id,double balance, Long accountNumber, String bankName,
                    String accountHolder, String accountType, String email) {
         if(bankName.equals("")||accountType.equals("")||accountNumber==0||balance<0)
             throw new IllegalArgumentException("Invalid Bank Account");
@@ -26,6 +29,7 @@ public class Account {
         this.accountHolder = accountHolder;
         this.accountType = accountType;
         this.email = email;
+        this.account_id = account_id;
     }
 
     public double getBalance() {
@@ -52,6 +56,8 @@ public class Account {
         return email;
     }
 
+    public int getAccount_id() { return account_id; }
+
     public void setBalance(double balance) {
         this.balance = balance;
     }
@@ -73,4 +79,5 @@ public class Account {
     public int hashCode() {
         return Objects.hash(balance, accountNumber, bankName, accountHolder, accountType, email);
     }
+
 }
