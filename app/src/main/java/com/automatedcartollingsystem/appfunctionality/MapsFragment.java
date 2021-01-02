@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.automatedcartollingsystem.registration.ProfileActivity;
 import com.example.automatedcartollingsystem.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -16,6 +19,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MapsFragment extends Fragment {
 
@@ -54,5 +58,29 @@ public class MapsFragment extends Fragment {
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
         }
+        BottomNavigationView bottomNavigationView = getView().findViewById(R.id.bottom_nav_view);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+
+            Intent intent;
+            switch (item.getItemId()){
+                case R.id.account_history_icon:
+                    intent = new Intent(getActivity(),TransactionHistoryActivity.class);
+                    break;
+                case R.id.traffic_update_icon:
+                    intent = new Intent(getActivity(),TrafficUpdateActivity.class);
+                    break;
+                case R.id.navigation_icon:
+                    intent = new Intent(getActivity(),NavigationActivity.class);
+                    break;
+                case R.id.profile_icon:
+                    intent = new Intent(getActivity(), ProfileActivity.class);
+
+                default:
+                    throw new IllegalStateException("Unexpected value: " + item.getItemId());
+            }
+            startActivity(intent);
+            return true;
+        });
     }
 }
