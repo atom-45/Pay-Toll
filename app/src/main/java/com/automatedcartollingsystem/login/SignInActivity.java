@@ -3,6 +3,7 @@ package com.automatedcartollingsystem.login;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +37,9 @@ public class SignInActivity extends AppCompatActivity {
 
     private UserCredentials userCredentials;
     private String uVerification;
+    private String email;
+    private String password;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +47,7 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
 
         TextView forgetPassword = findViewById(R.id.forgot_password_textview);
-        ProgressBar progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
         EditText emailTextField = findViewById(R.id.editTextEmailAddress);
         EditText passwordTextField = findViewById(R.id.editTextPassword);
 
@@ -63,19 +67,24 @@ public class SignInActivity extends AppCompatActivity {
             progressBar.setIndeterminate(true);
             progressBar.setVisibility(View.VISIBLE);
 
-            String email = emailTextField.getText().toString().trim();
-            String password = passwordTextField.getText().toString().trim();
-            userVerification(email, password);
+            email = emailTextField.getText().toString().trim();
+            password = passwordTextField.getText().toString().trim();
 
-            if("True".equals(uVerification)){//This is a Yoda condition
+
+            if(email.equals("") && password.equals("")){
+
+                Toast.makeText(this,
+                        "Please complete the form.",Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(SignInActivity.this,
-                        "Successfully logged in",Toast.LENGTH_LONG).show();
-                finish();
+
+            } else if(email.matches(Constants.EMAIL_PATTERN)) {
+                Log.e("Value",Boolean.toString(!email.matches(Constants.EMAIL_PATTERN)));
+                Toast.makeText(this,
+                        "This is not a valid Email Address",Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
+
             } else {
-                Toast.makeText(SignInActivity.this,
-                        "Not registered or wrong password and/or email!",Toast.LENGTH_LONG).show();
-                progressBar.setVisibility(View.INVISIBLE);
+                new SignInTask().execute();
             }
         });
 
@@ -86,19 +95,15 @@ public class SignInActivity extends AppCompatActivity {
                     "Email sent to your email address",Toast.LENGTH_SHORT).show());
     }
 
-    //I find the user credentials redundant. but on the other hand it
-    // means that the data is kept by another class/object.
-    private void userVerification(String email, String password){
+    private class SignInTask extends AsyncTask<Void,Void,Void>{
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        @Override
+        protected Void doInBackground(Void... voids) {
 
-        if(!email.equals("") && !password.equals("") && email.matches(Constants.EMAIL_PATTERN)){
-            userCredentials = new UserCredentials(email,password);
-            Log.e("Email",email);
-            Log.e("Password",password);
+            RequestQueue requestQueue = Volley.newRequestQueue(SignInActivity.this);
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                    Constants.URL_USER_STRING, response -> {
+                        Constants.URL_USER_STRING, response -> {
 
                 try {
                     Log.e("JSON RESPONSE", response);
@@ -108,26 +113,46 @@ public class SignInActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }, error -> {
-                Toast.makeText(this,
-                        "Cannot sign into your account!",Toast.LENGTH_LONG).show();
-                Log.e("JSON ERROR",error.getMessage());
 
-            }){
+                if(uVerification.equals("True")){
+                    progressBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(SignInActivity.this,
+                            "Successfully logged in",Toast.LENGTH_LONG).show();
+                    //finish();
+                } else {
+                    Toast.makeText(SignInActivity.this,
+                            "Not registered or wrong password and/or email!",Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE); }
+                }, error -> Toast.makeText(SignInActivity.this,
+                        "Cannot sign into your account!",Toast.LENGTH_LONG).show()){
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> mPar = new HashMap<>();
+                        mPar.put("email",email);
+                        mPar.put("password",password);
+                        mPar.put("type","login");
+                        return mPar;
+                    }
+
                 @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> mPar = new HashMap<>();
-                    mPar.put("Email",userCredentials.getEmail());
-                    mPar.put("Password",userCredentials.getPassword());
-                    mPar.put("type","login");
-                    return mPar;
+                public Priority getPriority() {
+                    return Priority.IMMEDIATE;
                 }
             };
-            requestQueue.add(stringRequest);
 
-        } else {
-            Toast.makeText(this,
-                    "Password is wrong or email address is invalid",Toast.LENGTH_SHORT).show();
+                requestQueue.add(stringRequest);
+
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
         }
     }
 }

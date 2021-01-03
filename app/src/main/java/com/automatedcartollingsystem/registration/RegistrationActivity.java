@@ -72,8 +72,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     ||emailAddress.equals("")||emailAddress.matches(Constants.EMAIL_PATTERN)){
                 Toast.makeText(RegistrationActivity.this,
                         "Complete all Fields",Toast.LENGTH_SHORT).show();
-            }
-            else {
+            } else {
                 new AccountTask().execute(name);
             }
 
