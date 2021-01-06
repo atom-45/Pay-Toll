@@ -2,6 +2,7 @@ package com.automatedcartollingsystem.registration;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.automatedcartollingsystem.appfunctionality.MapsActivity;
 import com.automatedcartollingsystem.models.Account;
 import com.automatedcartollingsystem.models.Constants;
 import com.automatedcartollingsystem.models.Registration;
@@ -101,6 +103,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         if(result.equals("True")){
                             Toast.makeText(RegistrationActivity.this,
                                     "You are successfully registered",Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(RegistrationActivity.this, MapsActivity.class));
                         } else {
                             Toast.makeText(RegistrationActivity.this,
                                     "You are not registered",Toast.LENGTH_SHORT).show();
