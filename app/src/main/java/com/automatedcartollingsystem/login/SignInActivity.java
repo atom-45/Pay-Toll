@@ -16,12 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.automatedcartollingsystem.appfunctionality.MapsActivity;
 import com.automatedcartollingsystem.login.data.UserCredentials;
 import com.automatedcartollingsystem.models.Constants;
 import com.automatedcartollingsystem.registration.RegistrationActivity;
@@ -116,8 +115,10 @@ public class SignInActivity extends AppCompatActivity {
 
                 if(uVerification.equals("True")){
                     progressBar.setVisibility(View.INVISIBLE);
+                    startActivity(new Intent(SignInActivity.this, MapsActivity.class));
+
                     Toast.makeText(SignInActivity.this,
-                            "Successfully logged in",Toast.LENGTH_LONG).show();
+                            "Successfully logged in",Toast.LENGTH_SHORT).show();
                     //finish();
                 } else {
                     Toast.makeText(SignInActivity.this,
