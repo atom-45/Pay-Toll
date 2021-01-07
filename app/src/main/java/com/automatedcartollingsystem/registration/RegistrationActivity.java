@@ -37,7 +37,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private String mobile_number;
     private String emailAddress;
     private String result;
-    private int account_id;
+    
 
 
 
@@ -102,7 +102,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                         if(result.equals("True")){
                             Toast.makeText(RegistrationActivity.this,
-                                    "You are successfully registered",Toast.LENGTH_LONG).show();
+                                    "You are successfully registered",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(RegistrationActivity.this, MapsActivity.class));
                         } else {
                             Toast.makeText(RegistrationActivity.this,
