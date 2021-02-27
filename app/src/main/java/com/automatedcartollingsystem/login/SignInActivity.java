@@ -116,6 +116,7 @@ public class SignInActivity extends AppCompatActivity {
                 if(uVerification.equals("True")){
                     progressBar.setVisibility(View.INVISIBLE);
                     startActivity(new Intent(SignInActivity.this, MapsActivity.class));
+                    finish();
 
                     Toast.makeText(SignInActivity.this,
                             "Successfully logged in",Toast.LENGTH_SHORT).show();
@@ -125,7 +126,8 @@ public class SignInActivity extends AppCompatActivity {
                             "Not registered or wrong password and/or email!",Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.INVISIBLE); }
                 }, error -> Toast.makeText(SignInActivity.this,
-                        "Cannot sign into your account!",Toast.LENGTH_LONG).show()){
+                        "Cannot sign into your account!",Toast.LENGTH_LONG).show())
+            {
                     @Override
                     protected Map<String, String> getParams() {
                         Map<String, String> mPar = new HashMap<>();
@@ -142,7 +144,6 @@ public class SignInActivity extends AppCompatActivity {
             };
 
                 requestQueue.add(stringRequest);
-
             return null;
         }
 
