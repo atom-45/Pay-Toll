@@ -77,8 +77,6 @@ public class RegistrationActivity extends AppCompatActivity {
             } else {
                 new AccountTask().execute(name);
             }
-
-
         });
     }
 
@@ -104,6 +102,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             Toast.makeText(RegistrationActivity.this,
                                     "You are successfully registered",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(RegistrationActivity.this, MapsActivity.class));
+                            finish();
                         } else {
                             Toast.makeText(RegistrationActivity.this,
                                     "You are not registered",Toast.LENGTH_SHORT).show();

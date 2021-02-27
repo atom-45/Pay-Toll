@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -210,11 +211,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        /*LatLng sydney = new LatLng(-34, 151);
-        googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
-
-
         getDeviceLocation();
         try {
             setRoute();
@@ -265,10 +261,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if(destinationAddress.hasLatitude() && destinationAddress.hasLongitude())
             {
                  originCoord = new com.google.maps.model
-                        .LatLng(originAddress.getLatitude(), originAddress.getLongitude());
+                        .LatLng(originAddress.getLatitude(), originAddress.getLongitude()
+                 );
                  destiCoord = new com.google.maps.model
-                        .LatLng(destinationAddress.getLatitude(),destinationAddress.getLongitude());
-
+                        .LatLng(destinationAddress.getLatitude(),destinationAddress.getLongitude()
+                 );
             }
         }
         return new com.google.maps.model.LatLng[]{originCoord,destiCoord};
@@ -310,39 +307,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 "Beit Bridge Border Post", FindPlaceFromTextRequest.InputType.TEXT_QUERY).await();
 
 
-        PlacesSearchResult placesSearchResult = findPlaceFromText.candidates[0];
-
-
-        PlaceDetails placeDetailsRequest1 =
-                PlacesApi.placeDetails(geoApiContext,placesSearchResult.placeId).
-                        region("South Africa").await();
-
-
-      //  Log.e("Place Details",placeDetailsRequest1.formattedAddress);
 
         origin = oriDestCoordinates[0];
         destination = oriDestCoordinates[1];
 
+        TextView distanceText = findViewById(R.id.distance_detail);
+        distanceText.setText(String.format("Distance: %s", directionsResult.routes[0].legs[0].distance));
+
+        TextView timeText = findViewById(R.id.time_detail);
+        timeText.setText(String.format("Duration: %s",directionsResult.routes[0].legs[0].duration));
+
         Log.e("Direction Result 1", Arrays.toString(directionsResult.routes));
         Log.e("Orgin_A", origin.toString());
         Log.e("Origin_B", destination.toString());
-        //getWaypoints();
-       // Log.e("Direction Result 2", String.valueOf(geocoder));
-        //Log.e("Direction Result 3", String.valueOf(geocoder1));
-       //Log.e("Time to destination", String.valueOf(directionsResult.routes[0].legs[0].duration));
-        //Log.e("Distance to destination", String.valueOf(directionsResult.routes[0].legs[0].distance));
-        //Log.e("Leg 0", Arrays.toString(directionsStep)+" "+directionsStep.length);
-        //Log.e("Geocoder 1", String.valueOf(geocoder));
-        //Log.e("Geocoder 2", String.valueOf(geocoder1));
-
-
 
         String[] filteredSteps = filterDirectionSteps(directionsStep);
         filterRouteRoads(filteredSteps);
         setPolyline();
 
 
-        
         //Log.e("Leg 1", String.valueOf(directionsResult.routes[0].legs[1]));
         //Log.e("Leg 2", String.valueOf(directionsResult.routes[0].legs[2]));
         //Log.e("Leg 3", String.valueOf(directionsResult.routes[0].legs[3]));
@@ -483,9 +466,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 Marker marker = mMap.addMarker(new MarkerOptions()
                                         .position(ltc.get(i))
                                         .title("Toll "+i)
+
                                 );
                             }
-
 
                             DirectionsApiRequest directionsApiRequest =
                                     new DirectionsApiRequest(geoApiContext);
@@ -495,6 +478,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 @Override
                                 public void onResult(DirectionsResult result) {
                                     new Handler(Looper.getMainLooper()).post(() -> {
+                                        TextView tollNumberText =
+                                                findViewById(R.id.toll_number_detail);
+                                        tollNumberText.setText(
+                                                String.format("No. of Tolls: %s",ltc.size()));
+
                                         for(DirectionsRoute route: result.routes){
                                             List<com.google.maps.model.LatLng> decodedPath =
                                                     PolylineEncoding.decode(
@@ -527,7 +515,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     e.printStackTrace();
                                 }
                             });
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -562,6 +549,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     lastKnownLocation = task.getResult();
                     //setting up maps camera position to current location of the device.
                     if(lastKnownLocation!=null){
+                        Log.e("Last Known Location", String.valueOf(lastKnownLocation));
                         LatLng  currentLocation =  new LatLng(lastKnownLocation.getLatitude(),
                                 lastKnownLocation.getLongitude());
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, (float) 5.0));
