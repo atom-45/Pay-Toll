@@ -41,7 +41,7 @@
         <EditText
             android:id="@+id/start_editText"
             android:layout_width="255dp"
-            android:layout_height="40dp"
+            android:layout_height="42dp"
             android:layout_marginTop="44dp"
             android:ems="10"
             android:hint="Start"
@@ -56,7 +56,7 @@
         <EditText
             android:id="@+id/end_editText"
             android:layout_width="255dp"
-            android:layout_height="40dp"
+            android:layout_height="42dp"
             android:layout_marginBottom="28dp"
             android:ems="10"
             android:hint="End"
