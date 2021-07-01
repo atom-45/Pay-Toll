@@ -38,7 +38,7 @@
             <EditText
                 android:id="@+id/username"
                 android:layout_width="280dp"
-                android:layout_height="39dp"
+                android:layout_height="42dp"
                 android:layout_marginTop="6dp"
                 android:ems="10"
                 android:hint="@string/user_name"
@@ -65,7 +65,7 @@
             <EditText
                 android:id="@+id/user_mobile_number"
                 android:layout_width="280dp"
-                android:layout_height="39dp"
+                android:layout_height="42dp"
                 android:layout_marginTop="6dp"
                 android:ems="10"
                 android:hint="@string/mobile_number"
@@ -93,7 +93,7 @@
             <EditText
                 android:id="@+id/user_email_address"
                 android:layout_width="280dp"
-                android:layout_height="39dp"
+                android:layout_height="42dp"
                 android:layout_marginTop="6dp"
                 android:ems="10"
                 android:hint="@string/prompt_email"
@@ -119,7 +119,7 @@
             <EditText
                 android:id="@+id/password"
                 android:layout_width="280dp"
-                android:layout_height="39dp"
+                android:layout_height="42dp"
                 android:layout_marginTop="6dp"
                 android:ems="10"
                 android:hint="@string/prompt_password"
@@ -145,7 +145,7 @@
             <EditText
                 android:id="@+id/reenter_password"
                 android:layout_width="280dp"
-                android:layout_height="39dp"
+                android:layout_height="42dp"
                 android:layout_marginTop="6dp"
                 android:ems="10"
                 android:hint="@string/re_enter_password"

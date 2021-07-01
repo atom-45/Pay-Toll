@@ -21,6 +21,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.automatedcartollingsystem.appfunctionality.MapsActivity;
+import com.automatedcartollingsystem.appfunctionality.NavigationActivity;
 import com.automatedcartollingsystem.login.data.UserCredentials;
 import com.automatedcartollingsystem.models.Constants;
 import com.automatedcartollingsystem.registration.RegistrationActivity;
@@ -115,7 +116,7 @@ public class SignInActivity extends AppCompatActivity {
 
                 if(uVerification.equals("True")){
                     progressBar.setVisibility(View.INVISIBLE);
-                    startActivity(new Intent(SignInActivity.this, MapsActivity.class));
+                    startActivity(new Intent(SignInActivity.this, NavigationActivity.class));
                     finish();
 
                     Toast.makeText(SignInActivity.this,
