@@ -261,8 +261,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private com.google.maps.model.LatLng[] getOriDestCoordinates(String origin, String destination)
             throws IOException {
 
-        //String a = getIntent().getStringExtra(Constants.START_DESTINATION);
-        //String b = getIntent().getStringExtra(Constants.END_DESTINATION);
         com.google.maps.model.LatLng originCoord = null;
         com.google.maps.model.LatLng destiCoord = null;
 
@@ -540,7 +538,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             DirectionsApiRequest directionsApiRequest =
                                     new DirectionsApiRequest(geoApiContext);
 
-                            directionsApiRequest.origin("Polokwane").destination("Durban").
+                            directionsApiRequest.origin(origin).destination(destination).
                                     setCallback(new PendingResult.Callback<DirectionsResult>() {
                                         @Override
                                         public void onResult(DirectionsResult result) {
