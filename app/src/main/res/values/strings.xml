@@ -30,4 +30,8 @@
     <string name="navigation">Navigation</string>
     <string name="title_activity_maps">Map</string>
     <string name="dummy">sddfrrr</string>
+    <string name="car_brand">car brand</string>
+    <string name="car_model">Car Model</string>
+    <string name="car_registration">Car Reg</string>
+    <string name="update">update</string>
 </resources>

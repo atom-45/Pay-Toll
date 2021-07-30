@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "715575729601",
+    "project_id": "autonomous-car-tolling-system",
+    "storage_bucket": "autonomous-car-tolling-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715575729601:android:6af381acf551a9851c6340",
+        "android_client_info": {
+          "package_name": "com.example.automatedcartollingsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "715575729601-qqqbmqqi67vit6u0t75s5deahvuc0tju.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.automatedcartollingsystem",
+            "certificate_hash": "11770d8cda7c17ba6c52a4f90c044636139ac692"
+          }
+        },
+        {
+          "client_id": "715575729601-gop1mkggogcai22p9228klm48b338hhk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHjzBPn54D5r5nKCc4bQQPzCipNMFhmPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "715575729601-gop1mkggogcai22p9228klm48b338hhk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
