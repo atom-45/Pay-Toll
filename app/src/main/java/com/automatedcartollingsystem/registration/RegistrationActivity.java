@@ -15,6 +15,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.automatedcartollingsystem.appfunctionality.MapsActivity;
+import com.automatedcartollingsystem.appfunctionality.NavigationActivity;
 import com.automatedcartollingsystem.models.Account;
 import com.automatedcartollingsystem.models.Constants;
 import com.automatedcartollingsystem.models.Registration;
@@ -80,7 +81,6 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-
     //It can only work iff it uses the same WIFI it cannot work using mobile data. for that the URL should be from a server/domain.
     private class RegistrationTask extends AsyncTask<Integer, Void, Void> {
 
@@ -101,7 +101,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         if(result.equals("True")){
                             Toast.makeText(RegistrationActivity.this,
                                     "You are successfully registered",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RegistrationActivity.this, MapsActivity.class));
+                            startActivity(new Intent(RegistrationActivity.this, NavigationActivity.class));
                             finish();
                         } else {
                             Toast.makeText(RegistrationActivity.this,

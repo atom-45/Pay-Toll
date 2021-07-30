@@ -24,6 +24,7 @@ import com.automatedcartollingsystem.appfunctionality.MapsActivity;
 import com.automatedcartollingsystem.appfunctionality.NavigationActivity;
 import com.automatedcartollingsystem.login.data.UserCredentials;
 import com.automatedcartollingsystem.models.Constants;
+import com.automatedcartollingsystem.registration.ProfileActivity;
 import com.automatedcartollingsystem.registration.RegistrationActivity;
 import com.example.automatedcartollingsystem.R;
 
@@ -84,6 +85,7 @@ public class SignInActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.INVISIBLE);
 
             } else {
+                ProfileActivity.user_email = email;
                 new SignInTask().execute();
             }
         });
@@ -121,7 +123,6 @@ public class SignInActivity extends AppCompatActivity {
 
                     Toast.makeText(SignInActivity.this,
                             "Successfully logged in",Toast.LENGTH_SHORT).show();
-                    //finish();
                 } else {
                     Toast.makeText(SignInActivity.this,
                             "Not registered or wrong password and/or email!",Toast.LENGTH_LONG).show();

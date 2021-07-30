@@ -1,5 +1,6 @@
 package com.automatedcartollingsystem.appfunctionality;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -36,6 +37,11 @@ public class NavigationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+
         EditText startDestination = findViewById(R.id.start_editText);
         EditText endDestination = findViewById(R.id.end_editText);
 
@@ -43,7 +49,7 @@ public class NavigationActivity extends AppCompatActivity {
             String start = startDestination.getText().toString().trim();
             String end = endDestination.getText().toString().trim();
 
-            if(start.equals(end)){
+            if(start.equals(end) || start.equals("")||end.equals("")){
                 Toast.makeText(getApplicationContext(),
                         "From and To destinations cannot be the same",Toast.LENGTH_SHORT)
                         .show();
