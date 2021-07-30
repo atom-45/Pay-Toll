@@ -2,14 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.automatedcartollingsystem">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -21,7 +23,11 @@
         android:theme="@style/Theme.AutomatedCarTollingSystem"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name="com.automatedcartollingsystem.registration.EditProfileActivity"></activity>
 
+        <service
+            android:name="com.automatedcartollingsystem.services.TollNotificationService"
+            android:exported="false" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -36,20 +42,48 @@
 
         <activity
             android:name="com.automatedcartollingsystem.appfunctionality.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:clearTaskOnLaunch="true"
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.automatedcartollingsystem.login.SignInActivity"
-            android:theme="@style/PageTheme.NoActionBar" />
-        <activity android:name="com.automatedcartollingsystem.appfunctionality.NavigationActivity" />
-        <activity android:name="com.automatedcartollingsystem.appfunctionality.ScannerActivity" />
-        <activity android:name="com.automatedcartollingsystem.appfunctionality.TrafficUpdateActivity" />
-        <activity android:name="com.automatedcartollingsystem.appfunctionality.TransactionHistoryActivity" />
-        <activity android:name="com.automatedcartollingsystem.registration.EditRegistrationActivity" />
-        <activity android:name="com.automatedcartollingsystem.registration.ProfileActivity" />
-        <activity android:name="com.automatedcartollingsystem.registration.RegistrationActivity" />
+            android:screenOrientation="portrait"
+            android:theme="@style/PageTheme.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.automatedcartollingsystem.appfunctionality.NavigationActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.automatedcartollingsystem.appfunctionality.ScannerActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" /> <!-- android:parentActivityName="com.automatedcartollingsystem.appfunctionality.MapsActivity" -->
+        <activity
+            android:name="com.automatedcartollingsystem.appfunctionality.TrafficUpdateActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.automatedcartollingsystem.appfunctionality.TransactionHistoryActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.automatedcartollingsystem.registration.EditRegistrationActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.automatedcartollingsystem.registration.ProfileActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.automatedcartollingsystem.registration.RegistrationActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name="com.automatedcartollingsystem.login.SplashActivity"
-            android:theme="@style/Theme.Splash">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Splash"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
