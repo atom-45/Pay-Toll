@@ -27,14 +27,14 @@
             android:id="@+id/travel_detail_card"
             android:layout_width="157dp"
             android:layout_height="85dp"
-            map:cardElevation="5dp"
             map:cardCornerRadius="4.5dp"
+            map:cardElevation="5dp"
             map:layout_constraintBottom_toBottomOf="parent"
             map:layout_constraintEnd_toEndOf="parent"
-            map:layout_constraintHorizontal_bias="0.084"
+            map:layout_constraintHorizontal_bias="0.937"
             map:layout_constraintStart_toStartOf="parent"
             map:layout_constraintTop_toTopOf="@+id/map"
-            map:layout_constraintVertical_bias="0.043">
+            map:layout_constraintVertical_bias="0.026">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -73,6 +73,21 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_baseline_photo_camera_24"
+            map:layout_constraintBottom_toBottomOf="parent"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintHorizontal_bias="0.498"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toTopOf="parent"
+            map:layout_constraintVertical_bias="0.945"
+            tools:ignore="ContentDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
