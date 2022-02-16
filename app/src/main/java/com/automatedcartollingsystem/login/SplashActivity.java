@@ -11,6 +11,8 @@ import com.automatedcartollingsystem.appfunctionality.NavigationActivity;
 public class SplashActivity extends AppCompatActivity {
 
     private Handler handler = new Handler();
+    
+    //Basically this code below does almost nothing when it comes to controlling the time needed to display the splash screen, though it allows the time to launch a different activity at a given time period.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
